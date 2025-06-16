@@ -10,8 +10,8 @@ logger.setLevel(logging.INFO)
 ssm = boto3.client('ssm')
 incidents = boto3.client('ssm-incidents')
 
-RESPONSE_PLAN_ARN = 'arn:aws:ssm-incidents::851725622142:response-plan/RotateKeysOnCompromise'
-AUTOMATION_ROLE_ARN = 'arn:aws:iam::851725622142:role/Incident-Manager-Policy'
+RESPONSE_PLAN_ARN = 'arn:aws:ssm-incidents::85xxxxxxxxxx:response-plan/RotateKeysOnCompromise'
+AUTOMATION_ROLE_ARN = 'arn:aws:iam::85xxxxxxxxx:role/Incident-Manager-Policy'
 AUTOMATION_DOCUMENT = 'RotateIAMKeysRunbook'
 
 def generate_client_token(user_name, event_time):
