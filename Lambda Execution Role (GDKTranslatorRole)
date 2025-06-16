@@ -9,7 +9,7 @@ AllowPassRoleToSSM
         {
             "Effect": "Allow",
             "Action": "iam:PassRole",
-            "Resource": "arn:aws:iam::851725622142:role/Incident-Manager-Policy"
+            "Resource": "arn:aws:iam::851xxxxxxxxx:role/Incident-Manager-Policy"
         },
         {
             "Effect": "Allow",
@@ -19,12 +19,12 @@ AllowPassRoleToSSM
         {
             "Effect": "Allow",
             "Action": "ssm-incidents:StartIncident",
-            "Resource": "arn:aws:ssm-incidents::851725622142:response-plan/RotateKeysOnCompromise"
+            "Resource": "arn:aws:ssm-incidents::851xxxxxxxxx:response-plan/RotateKeysOnCompromise"
         },
         {
             "Effect": "Allow",
             "Action": "ssm-contacts:StartEngagement",
-            "Resource": "arn:aws:ssm-contacts:eu-west-2:851725622142:contact/bernardo_josee"
+            "Resource": "arn:aws:ssm-contacts:eu-west-2:851xxxxxxxxx:contact/bernardo_josee"
         }
     ]
 }
