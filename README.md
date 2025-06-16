@@ -19,7 +19,8 @@ Structured logging: Logs include AWS request IDs to correlate events in CloudWat
 
 Architecture
 
-<img width="974" alt="Screenshot 2025-06-16 at 18 51 08" src="https://github.com/user-attachments/assets/5e266f72-df68-4eae-b4ea-6e322d3ceb55" />
+<img width="1022" alt="Screenshot 2025-06-16 at 19 33 26" src="https://github.com/user-attachments/assets/40a03ef3-cd07-4c5b-95fd-ba7aaae15413" />
+
 
 
 
