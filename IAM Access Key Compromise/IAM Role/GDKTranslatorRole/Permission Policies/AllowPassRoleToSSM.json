@@ -1,0 +1,25 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::851725622142:role/Incident-Manager-Policy"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm:StartAutomationExecution",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm-incidents:StartIncident",
+            "Resource": "arn:aws:ssm-incidents::851725622142:response-plan/RotateKeysOnCompromise"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm-contacts:StartEngagement",
+            "Resource": "arn:aws:ssm-contacts:eu-west-2:851725622142:contact/bernardo_josee"
+        }
+    ]
+}

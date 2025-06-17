@@ -1,0 +1,56 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:eu-west-2:851725622142:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:eu-west-2:851725622142:log-group:/aws/lambda/S3_SecurityHub_IR_Lambda:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartAutomationExecution"
+            ],
+            "Resource": "arn:aws:ssm:*:*:automation-definition/RemediatePublicS3Bucket:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutBucketPublicAccessBlock",
+                "s3:DeleteBucketPolicy"
+            ],
+            "Resource": "arn:aws:s3:::*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm-incidents:StartIncident"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm-contacts:StartEngagement",
+            "Resource": "arn:aws:ssm-contacts:eu-west-2:851725622142:contact/bernardo_josee"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:*:*:*"
+        }
+    ]
+}
