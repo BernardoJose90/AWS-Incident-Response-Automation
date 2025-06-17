@@ -41,7 +41,7 @@ Automated remediation workflow to detect and mitigate public S3 buckets.
 #### Core Workflow
 
 1. **Detection**
-   - Security Hub detects public S3 bucket.
+   - Security Hub detects a public S3 bucket.
 2. **Remediation**
    - Triggered SSM Automation Runbook performs:
      - ACL lockdown
@@ -65,14 +65,14 @@ Automated remediation workflow to detect and mitigate public S3 buckets.
 
 ## 🔐 IAM Key Compromise Incident Automation
 
-![IAM Key Compromise](https://github.com/user-attachments/assets/40a03ef3-cd07-4c5b-95fd-ba7aaae15413)
+<img width="1031" alt="Screenshot 2025-06-17 at 23 58 12" src="https://github.com/user-attachments/assets/b0892769-dd53-4fe0-9f38-9369c2657480" />
 
 This solution detects and remediates IAM access key compromises using a fully automated Lambda-based workflow.
 
 ### Features
 
 - **Automatic IAM Key Rotation**: Uses SSM Automation Documents to rotate compromised keys.
-- **Incident Creation**: Context-rich incidents created in Incident Manager.
+- **Incident Creation**: Security incidents created in Incident Manager.
 - **Duplicate Prevention**: Client token prevents redundant incidents for same user-event window.
 - **Robust Logging**: Detailed AWS service errors are logged to CloudWatch for troubleshooting.
 
