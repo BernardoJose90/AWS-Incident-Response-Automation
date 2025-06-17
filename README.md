@@ -1,38 +1,103 @@
-# AWS IAM Key Compromise Incident Automation
+# AWS Automated Incident Response Solutions
 
-![Architecture Diagram](https://github.com/user-attachments/assets/40a03ef3-cd07-4c5b-95fd-ba7aaae15413)
+This repository provides automated incident response solutions for two common security scenarios in AWS:
 
-This AWS Lambda function automates the detection and response to IAM Access Key compromise events.
+1. **Public S3 Bucket Remediation**
+2. **IAM Access Key Compromise**
 
-## Features
+Each solution is event-driven, uses AWS-native services, and integrates with Systems Manager Incident Manager for structured response and tracking.
 
-- **Automatic IAM key rotation**: Triggers a predefined SSM Automation Document to rotate compromised keys securely
-- **Incident creation**: Opens an incident with contextual details to notify the right responders
-- **Duplicate incident prevention**: Uses a stable client token based on user and event timestamp rounded to 15 minutes
-- **Robust error handling**: Logs detailed AWS service errors for easier troubleshooting
+---
 
-## Architecture
+## 📌 Table of Contents
 
-The solution consists of the following AWS services working together:
+- [S3 Bucket Public Access Remediation](#-s3-bucket-public-access-remediation)
+  - [Features](#features)
+  - [Architecture Overview](#architecture-overview)
+  - [Key Components](#key-components)
+- [IAM Key Compromise Incident Automation](#-iam-key-compromise-incident-automation)
+  - [Features](#features-1)
+  - [Architecture](#architecture)
+  - [Deployment Components](#deployment-components)
 
-1. **AWS Lambda** - Core automation logic
-2. **Amazon EventBridge** - Event routing and filtering
-3. **AWS Systems Manager** - Automation and incident management
-4. **AWS IAM** - Secure access and execution roles
-5. **AWS CloudWatch** - Logging and monitoring
+---
 
-## Deployment Components
+## 🪣 S3 Bucket Public Access Remediation
 
-### 1. AWS Lambda Function (`GuardDutyTranslator`)
-- Extracts user and event info from the event
-- Starts SSM Automation to rotate IAM keys
-- Creates SSM Incident Manager incident
-- Prevents duplicate incidents with a client token
+![S3 Public Workflow](https://github.com/user-attachments/assets/d6d2351e-293f-4890-a2a0-5f58eb9f4112)
 
-### 2. Amazon EventBridge(`Trigger-GuardDuty-Incident`)
-- Rule: `Trigger-GuardDuty-Incident`
-- Filters events from source: `custom.guardduty.simulation`
-- Event pattern:
+Automated remediation workflow to detect and mitigate public S3 buckets.
+
+### Features
+
+- **Detection**: Integrated with AWS Security Hub.
+- **Remediation**: Automatically revokes public access from S3 buckets.
+- **Comprehensive Tracking**: Incident lifecycle tracked via AWS Systems Manager.
+- **Alerting**: Email notifications via Incident Manager.
+- **Audit Trail**: Full logging of all remediation actions.
+
+### Architecture Overview
+
+#### Core Workflow
+
+1. **Detection**
+   - Security Hub detects public S3 bucket.
+2. **Remediation**
+   - Triggered SSM Automation Runbook performs:
+     - ACL lockdown
+     - Bucket policy update
+     - Enabling `BlockPublicAccess`
+3. **Incident Management**
+   - AWS Systems Manager Incident Manager is triggered.
+4. **Notification**
+   - Email alerts sent via Incident Manager's SNS integration.
+
+### Key Components
+
+| Component           | Description                                 | AWS Service                    |
+|--------------------|---------------------------------------------|--------------------------------|
+| **Detection Layer**| Identifies public S3 buckets                | AWS Security Hub               |
+| **Orchestrator**   | Coordinates remediation                     | AWS Lambda                     |
+| **Remediation**    | Executes fixes via Runbook                  | AWS Systems Manager Automation |
+| **Incident Tracker**| Tracks incident lifecycle                  | AWS Systems Manager Incident Manager |
+
+---
+
+## 🔐 IAM Key Compromise Incident Automation
+
+![IAM Key Compromise](https://github.com/user-attachments/assets/40a03ef3-cd07-4c5b-95fd-ba7aaae15413)
+
+This solution detects and remediates IAM access key compromises using a fully automated Lambda-based workflow.
+
+### Features
+
+- **Automatic IAM Key Rotation**: Uses SSM Automation Documents to rotate compromised keys.
+- **Incident Creation**: Context-rich incidents created in Incident Manager.
+- **Duplicate Prevention**: Client token prevents redundant incidents for same user-event window.
+- **Robust Logging**: Detailed AWS service errors are logged to CloudWatch for troubleshooting.
+
+### Architecture
+
+This automation uses the following AWS services:
+
+1. **AWS Lambda** – Core logic for parsing GuardDuty findings and triggering remediation.
+2. **Amazon EventBridge** – Filters GuardDuty findings and routes to Lambda.
+3. **AWS Systems Manager** – Executes Automation Documents and manages incidents.
+4. **AWS IAM** – Executes secure roles and handles key rotation.
+5. **AWS CloudWatch** – Provides centralized logging and metrics.
+
+### Deployment Components
+
+#### 1. AWS Lambda Function (`GuardDutyTranslator`)
+
+- Parses IAM user and event data.
+- Initiates key rotation via SSM Automation.
+- Opens an Incident Manager incident with contextual metadata.
+- Deduplicates events using a time-windowed client token.
+
+#### 2. Amazon EventBridge (`Trigger-GuardDuty-Incident`)
+
+- EventBridge rule filters GuardDuty findings with specific conditions:
   ```json
   {
     "source": ["custom.guardduty.simulation"],
