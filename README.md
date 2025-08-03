@@ -9,7 +9,7 @@ Each solution is event-driven, uses AWS-native services, and integrates with Sys
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [S3 Bucket Public Access Remediation](#-s3-bucket-public-access-remediation)
   - [Features](#features)
@@ -22,7 +22,7 @@ Each solution is event-driven, uses AWS-native services, and integrates with Sys
 
 ---
 
-## 🪣 S3 Bucket Public Access Remediation
+## S3 Bucket Public Access Remediation
 
 ![S3 Public Workflow](https://github.com/user-attachments/assets/d6d2351e-293f-4890-a2a0-5f58eb9f4112)
 
@@ -63,7 +63,7 @@ Automated remediation workflow to detect and mitigate public S3 buckets.
 
 ---
 
-## 🔐 IAM Key Compromise Incident Automation
+## IAM Key Compromise Incident Automation
 
 <img width="1031" alt="Screenshot 2025-06-17 at 23 58 12" src="https://github.com/user-attachments/assets/b0892769-dd53-4fe0-9f38-9369c2657480" />
 
