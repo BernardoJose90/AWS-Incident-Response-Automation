@@ -34,7 +34,6 @@ Automated remediation workflow to detect and mitigate public S3 buckets.
 - **Remediation**: Automatically revokes public access from S3 buckets.
 - **Comprehensive Tracking**: Incident lifecycle tracked via AWS Systems Manager.
 - **Alerting**: Email notifications via Incident Manager.
-- **Audit Trail**: Full logging of all remediation actions.
 
 ### Architecture Overview
 
