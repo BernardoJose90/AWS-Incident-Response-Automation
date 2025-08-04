@@ -43,7 +43,6 @@ Automated remediation workflow to detect and mitigate public S3 buckets.
    - Security Hub detects a public S3 bucket.
 2. **Remediation**
    - Triggered SSM Automation Runbook performs:
-     - ACL lockdown
      - Bucket policy update
      - Enabling `BlockPublicAccess`
 3. **Incident Management**
